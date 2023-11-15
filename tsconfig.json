@@ -31,8 +31,14 @@
     "checkJs": true,
 
     "esModuleInterop": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+ 		  "@pages/*":  ["./src/pages/*"],
+      "@styles/*":  ["./src/styles/*"],
+      "@components/*":  ["./src/components/*"]
+		}
   },
-  "include": ["src/**/**/*"],
+
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

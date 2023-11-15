@@ -1,7 +1,9 @@
-const App = () => (
-  <div>
-    <h1>AiqDesafio</h1>
-  </div>
-);
+const App: React.FC = () => {
+  return (
+    <div>
+      <h1>AiqDesafio teste</h1>
+    </div>
+  );
+};
 
 export default App;

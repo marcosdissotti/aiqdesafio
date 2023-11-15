@@ -2,11 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: path.resolve(__dirname, 'src', 'index.tsx'),
   mode: "development",
   output: {
-    filename: "bundle.[fullhash].js",
     path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -16,6 +16,18 @@ module.exports = {
   resolve: {
     modules: [__dirname, "src", "node_modules"],
     extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
+    alias: {
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@components': path.resolve(__dirname, 'src/components')
+    }
+  },
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'public')
+    },
+    compress: true,
+    port: 3000
   },
   module: {
     rules: [
