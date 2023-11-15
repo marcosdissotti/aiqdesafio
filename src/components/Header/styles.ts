@@ -1,20 +1,23 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.header`
   ${({ theme }) => css`
     height: 5rem;
+    padding: 0 80px;
 
     display: grid;
     align-items: center;
-    justify-items: center;
     grid-template-columns: 1fr 2fr 1fr;
 
-    background-color: ${theme.colors.primary};
-
     color: #fff;
+    background-color: ${theme.colors.primary};
 
     div:first-child {
       display: flex;
+      justify-self: start;
+      justify-items: center;
+
+      grid-column: 1;
     }
 
     button {
@@ -40,23 +43,14 @@ export const Container = styled.div`
       }
     }
 
-    input {
-      width: 80%;
-      height: 2.5rem;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid ${theme.colors.lightGray};
-    }
-
-    input::placeholder {
-      opacity: 0.7;
-      font-size: 0.875rem;
-      color: ${theme.colors.gray};
-      background: ${theme.colors.white};
-    }
-
     .aiqfome-logo {
       margin-right: 2.5rem;
+    }
+
+    .login-button-wrapper {
+      width: fit-content;
+      grid-column: 3;
+      justify-self: end;
     }
   `}
 `;

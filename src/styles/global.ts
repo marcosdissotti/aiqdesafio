@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 
       font-size: 16px;
       font-family: 'Nunito', sans-serif;
-
+      background: ${theme.colors.white};
       -webkit-font-smoothing: antialiased;
     }
 
