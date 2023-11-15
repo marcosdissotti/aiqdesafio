@@ -7,8 +7,13 @@ export const defaultTheme = {
     black: '#202326',
 
     gray: '#6D6F73',
-    lightGray: '#A8ADB7',
+    lightGray: '#CDD1D9',
+    silverGray: '#A8ADB7',
+
     darkGray: '#393A3C',
+
+    purple: '#580F78',
+    lightPurple: '#EECFFC',
 
     green: '#02A117',
     bluishGreen: '#00A296'

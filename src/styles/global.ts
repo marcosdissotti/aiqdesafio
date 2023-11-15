@@ -26,15 +26,17 @@ export const GlobalStyle = createGlobalStyle`
       min-height: calc(100vh);
 
       font-size: 16px;
-      font-family: 'Nunito', sans-serif, Arial;
+      font-family: 'Nunito', sans-serif;
 
       -webkit-font-smoothing: antialiased;
     }
 
     button {
+      border: none;
+
       cursor: pointer;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Nunito&family=Sen:wght@800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Sen:wght@800&display=swap');
   `}
 `;
