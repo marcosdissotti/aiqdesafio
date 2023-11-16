@@ -1,6 +1,5 @@
-import AiqfomeIconSvg from '@assets/icons/aiqfome-icon.svg';
-
 import LoginIconSvg from '@assets/icons/login-icon.svg';
+import AiqfomeIconSvg from '@assets/icons/aiqfome-icon.svg';
 import SearchInput from '@components/Header/components/SearchInput';
 import DeliveryAddress from '@components/Header/components/DeliveryAddress';
 
