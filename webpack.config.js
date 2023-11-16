@@ -46,6 +46,12 @@ module.exports = {
         test: /\.(png|svg|jpg|gif)$/,
         exclude: /node_modules/,
         use: ['file-loader']
+      },
+      {
+        test: /\.(woff|woff2|ttf)$/,
+        use: {
+          loader: 'url-loader'
+        }
       }
     ]
   }
