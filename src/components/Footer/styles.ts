@@ -3,8 +3,6 @@ import styled, { css } from 'styled-components';
 export const Container = styled.footer`
   ${({ theme }) => css`
     width: 100%;
-    bottom: 0;
-    position: fixed;
     padding: 32px 0px;
 
     display: flex;

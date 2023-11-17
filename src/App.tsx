@@ -14,7 +14,7 @@ const App: React.FC = () => {
         <Header />
         <ItemDetail />
         <GlobalStyle />
-        {/* <Footer /> */}
+        <Footer />
       </ThemeProvider>
     </OrderProvider>
   );

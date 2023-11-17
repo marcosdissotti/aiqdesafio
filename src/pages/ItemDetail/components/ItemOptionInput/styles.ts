@@ -88,7 +88,7 @@ export const InputRadio = styled.div`
     .option-price-wrapper {
       width: 40%;
       display: flex;
-      align-items: flex-end;
+      justify-content: flex-end;
 
       font-weight: 700;
       font-size: 0.875rem;

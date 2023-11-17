@@ -8,36 +8,44 @@ import { OrderDataInterface } from '@interfaces/OrderDataInterface';
 import * as S from './styles';
 
 const ItemOptionInput: React.FC<Pick<OrderDataInterface, 'options'>> = ({ options }) => {
-  const [optionLabel, setOptionLabel] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState({});
 
-  const handleRadioChange = (event) => {
-    setOptionLabel(event?.target.value);
+  const handleRadioChange = (event, optionGroup: string) => {
+    const { value } = event.target;
+    setSelectedOptions((prevSelected) => ({
+      ...prevSelected,
+      [optionGroup]: value
+    }));
+
+    console.log('selectedOptions', selectedOptions);
   };
 
   return (
     <S.Container>
       {options &&
-        options.map((option, index) => (
+        options.map((optionGroup, index) => (
           <>
             <div className='option-wrapper'>
               <div className='option-info-wrapper'>
-                <p className='option-name'>{option.name}</p>
-                <p className='option-description'>{option.description}</p>
+                <p className='option-name'>{optionGroup.name}</p>
+                <p className='option-description'>{optionGroup.description}</p>
               </div>
               <div className='option-list'>
-                {option.optionList &&
-                  option.optionList.map((option, index) => (
+                {optionGroup.optionList &&
+                  optionGroup.optionList.map((option, index) => (
                     <S.InputRadio>
                       <div>
                         <input
                           type='radio'
-                          name='option_label'
+                          name={optionGroup.name}
                           value={option.label}
-                          onChange={(event) => handleRadioChange(event)}
+                          onChange={(event) => handleRadioChange(event, optionGroup.name)}
                         />{' '}
-                        {optionLabel === option.label && <img className='option-icons' src={RadioCheckedIconSvg} />}
+                        {selectedOptions[optionGroup.name] === option.label && (
+                          <img className='option-icons' src={RadioCheckedIconSvg} />
+                        )}
                         {option.saleOriginalPrice > 0 && <img className='option-icons' src={MoneyIconSvg} />}
-                        {optionLabel === option.label ? (
+                        {selectedOptions[optionGroup.name] === option.label ? (
                           <>
                             <S.PromoLabel>{option.label}</S.PromoLabel>
                           </>
