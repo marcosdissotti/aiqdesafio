@@ -36,7 +36,10 @@
  		  "@pages/*":  ["./src/pages/*"],
       "@styles/*":  ["./src/styles/*"],
       "@components/*":  ["./src/components/*"],
-      "@assets/*":  ["./src/assets/*"]
+      "@assets/*":  ["./src/assets/*"],
+      "@services/*":  ["./src/services/*"],
+      "@interfaces/*":  ["./src/interfaces/*"],
+      "@contexts/*":  ["./src/contexts/*"]
 		}
   },
 

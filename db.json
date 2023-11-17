@@ -1,0 +1,109 @@
+{
+  "establishment": {
+    "name": "Matsuri Concept",
+    "logoUrl": "https://raw.githubusercontent.com/marcosdissotti/images/main/matsuri_logo.png"
+  },
+  "customer": {
+    "deliveryAddress": "Rua Mandaguari, 198"
+  },
+  "order": {
+    "price": 19.90,
+    "name": "Ceviche de salmão",
+    "description": "salmão temperado com limão, cebola e pimenta",
+    "quantity": 0,
+    "amount": 0,
+    "observation": "",
+    "options": [
+      {
+        "name": "qual o tamanho?",
+        "description": "escolha 1",
+        "hasQuantity": false,
+        "maxOption": 1,
+        "optionIsRequired": true,
+        "optionList": [
+          {
+            "label": "médio",
+            "price": 19.90,
+            "saleOriginalPrice": 22.90,
+            "quantity": 0
+          },
+          {
+            "label": "grande",
+            "price": 28.90,
+            "saleOriginalPrice": 0,
+            "quantity": 0
+          }
+        ]
+      },
+      {
+        "name": "vai querer bebida?",
+        "description": "escolha quantos quiser",
+        "hasQuantity": true,
+        "maxOption": 0,
+        "optionIsRequired": false,
+        "optionList": [
+          {
+            "label": "coca-cola",
+            "price": 10.00,
+            "saleOriginalPrice": 0,
+            "quantity": 2
+          },
+          {
+            "label": "suco prats laranja",
+            "price": 6.00,
+            "optionIsRequired": 0,
+            "quantity": 0
+          },
+          {
+            "label": "água sem gás",
+            "price": 3.00,
+            "optionIsRequired": 0,
+            "quantity": 0
+          }
+        ]
+      },
+      {
+        "name": "precisa de talher?",
+        "description": "escolha até 1",
+        "hasQuantity": false,
+        "maxOption": 1,
+        "optionIsRequired": false,
+        "optionList": [
+          {
+            "label": "hashi",
+            "price": 0.00,
+            "optionIsRequired": 0,
+            "quantity": 0
+          },
+          {
+            "label": "garfo e faca descartável",
+            "price": 1.00,
+            "optionIsRequired": 0,
+            "quantity": 0
+          }
+        ]
+      },
+      {
+        "name": "mais alguma coisa?",
+        "description": "escolha até 2",
+        "hasQuantity": false,
+        "maxOption": 2,
+        "optionIsRequired": false,
+        "optionList": [
+          {
+            "label": "biscoito da sorte",
+            "price": 2.00,
+            "optionIsRequired": 0,
+            "quantity": 0
+          },
+          {
+            "label": "rolinho primavera",
+            "price": 8.00,
+            "optionIsRequired": 0,
+            "quantity": 0
+          }
+        ]
+      }
+    ]
+  }
+}

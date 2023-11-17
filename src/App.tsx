@@ -5,15 +5,18 @@ import Footer from '@components/Footer';
 import ItemDetail from '@pages/ItemDetail';
 import { GlobalStyle } from '@styles/global';
 import { defaultTheme } from '@styles/themes/default';
+import { OrderProvider } from '@contexts/OrderContext';
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Header />
-      <ItemDetail />
-      <GlobalStyle />
-      <Footer />
-    </ThemeProvider>
+    <OrderProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <Header />
+        <ItemDetail />
+        <GlobalStyle />
+        {/* <Footer /> */}
+      </ThemeProvider>
+    </OrderProvider>
   );
 };
 

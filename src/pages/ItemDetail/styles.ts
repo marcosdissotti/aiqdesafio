@@ -13,6 +13,7 @@ export const Container = styled.div`
     }
 
     .item-detail-wrapper {
+      width: 100%;
       display: flex;
 
       div:first-child {
@@ -110,6 +111,34 @@ export const Container = styled.div`
 
         border-radius: 4px;
         border: 1px solid ${theme.colors.secondary};
+      }
+
+      input[type='textarea'] {
+        width: 100%;
+        height: 58px;
+      }
+    }
+
+    .observation-wrapper {
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+
+      textarea {
+        width: 35%;
+        margin: 24px 0 48px 0;
+        padding: 10px 12px;
+
+        resize: none;
+        font-weight: 600;
+        font-family: Nunito;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        line-height: 135.714%;
+        color: ${theme.colors.gray};
+        background: ${theme.colors.white};
+        border: 1px solid ${theme.colors.lightGray};
       }
     }
   `}

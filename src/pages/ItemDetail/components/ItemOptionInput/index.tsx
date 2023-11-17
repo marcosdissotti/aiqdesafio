@@ -1,124 +1,66 @@
 import { useState } from 'react';
 
-import RadioCheckedIconSvg from '@assets/icons/radio-checked.svg';
+import Divider from '@components/Divider';
 import MoneyIconSvg from '@assets/icons/money-icon.svg';
+import RadioCheckedIconSvg from '@assets/icons/radio-checked.svg';
+import { OrderDataInterface } from '@interfaces/OrderDataInterface';
 
 import * as S from './styles';
 
-const ItemOptionInput: React.FC = () => {
+const ItemOptionInput: React.FC<Pick<OrderDataInterface, 'options'>> = ({ options }) => {
   const [optionLabel, setOptionLabel] = useState('');
 
   const handleRadioChange = (event) => {
     setOptionLabel(event?.target.value);
   };
 
-  const option_list = [
-    {
-      option_label: 'médio',
-      option_price: 19.9,
-      option_promo_original_price: 22.9,
-      option_quantity: 0
-    },
-    {
-      option_label: 'grande',
-      option_price: 28.9,
-      option_promo_original_price: 0,
-      option_quantity: 0
-    },
-    {
-      option_label: 'pequena',
-      option_price: 28.9,
-      option_promo_original_price: 0,
-      option_quantity: 0
-    },
-    {
-      option_label: 'gigante',
-      option_price: 28.9,
-      option_promo_original_price: 0,
-      option_quantity: 0
-    }
-  ];
-
   return (
-    <S.Container className='item-detail-padding'>
-      <div className='option-info-wrapper'>
-        <p className='option-name'>qual o tamanho?</p>
-        <p className='option-description'>escolha 1</p>
-      </div>
-      <div className='option-list'>
-        <div className='input-radio-wrapper'>
-          <div>
-            <input
-              type='radio'
-              name='option_label'
-              value={option_list[0].option_label}
-              onChange={(event) => handleRadioChange(event)}
-            />{' '}
-            {optionLabel === option_list[0].option_label && <img className='option-icons' src={RadioCheckedIconSvg} />}
-            {option_list[0].option_promo_original_price > 0 ? (
-              <>
-                <img className='option-icons' src={MoneyIconSvg} />
-                <S.PromoLabel>{option_list[0].option_label}</S.PromoLabel>
-              </>
-            ) : (
-              <label>{option_list[0].option_label}</label>
-            )}
-          </div>
-          <div className='option-price-wrapper'>
-            {option_list[0].option_promo_original_price > 0 ? (
-              <p>
-                de R$ {option_list[0].option_promo_original_price} por <span> R$ {option_list[1].option_price}</span>
-              </p>
-            ) : (
-              <>R$ {option_list[0].option_price}</>
-            )}
-          </div>
-        </div>
-        <div className='input-radio-wrapper'>
-          <div>
-            <input
-              type='radio'
-              name='option_label'
-              value={option_list[1].option_label}
-              onChange={(event) => handleRadioChange(event)}
-            />{' '}
-            {optionLabel === option_list[1].option_label && <img className='option-icons' src={RadioCheckedIconSvg} />}
-            {option_list[1].option_promo_original_price > 0 && <img className='option-icons' src={MoneyIconSvg} />}
-            <label>{option_list[1].option_label}</label>
-          </div>
-          <div className='option-price-wrapper'>
-            {option_list[1].option_promo_original_price > 0 ? (
-              <p>
-                de R$ {option_list[1].option_promo_original_price} por <span> R$ {option_list[1].option_price}</span>
-              </p>
-            ) : (
-              <>R$ {option_list[1].option_price}</>
-            )}
-          </div>
-        </div>
-        {/* <div className='input-radio-wrapper'>
-          <div>
-            <input
-              type='radio'
-              name='option_label'
-              value={option_list[2].option_label}
-              onChange={(event) => handleRadioChange(event)}
-            />
-            {optionLabel === option_list[2].option_label && <img className='option-icons' src={RadioCheckedIconSvg} />}
-            {option_list[2].option_promo_original_price > 0 && <img className='option-icons' src={MoneyIconSvg} />}
-            <label>{option_list[2].option_label}</label>
-          </div>
-          <div className='option-price-wrapper'>
-            {option_list[2].option_promo_original_price > 0 ? (
-              <p>
-                de R$ {option_list[2].option_promo_original_price} por <span> R$ {option_list[2].option_price}</span>
-              </p>
-            ) : (
-              <>R$ {option_list[2].option_price}</>
-            )}
-          </div>
-        </div> */}
-      </div>
+    <S.Container>
+      {options &&
+        options.map((option, index) => (
+          <>
+            <div className='option-wrapper'>
+              <div className='option-info-wrapper'>
+                <p className='option-name'>{option.name}</p>
+                <p className='option-description'>{option.description}</p>
+              </div>
+              <div className='option-list'>
+                {option.optionList &&
+                  option.optionList.map((option, index) => (
+                    <S.InputRadio>
+                      <div>
+                        <input
+                          type='radio'
+                          name='option_label'
+                          value={option.label}
+                          onChange={(event) => handleRadioChange(event)}
+                        />{' '}
+                        {optionLabel === option.label && <img className='option-icons' src={RadioCheckedIconSvg} />}
+                        {option.saleOriginalPrice > 0 && <img className='option-icons' src={MoneyIconSvg} />}
+                        {optionLabel === option.label ? (
+                          <>
+                            <S.PromoLabel>{option.label}</S.PromoLabel>
+                          </>
+                        ) : (
+                          <label>{option.label}</label>
+                        )}
+                      </div>
+                      <div className='option-price-wrapper'>
+                        {option.saleOriginalPrice > 0 ? (
+                          <p>
+                            de R$ {option.saleOriginalPrice} por <span> R$ {option.price}</span>
+                          </p>
+                        ) : (
+                          option.price > 0 && <p className='option-price'>R$ {option.price}</p>
+                        )}
+                      </div>
+                    </S.InputRadio>
+                  ))}
+              </div>
+            </div>
+            <Divider />
+          </>
+        ))}
     </S.Container>
   );
 };
