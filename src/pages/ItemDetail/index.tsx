@@ -1,7 +1,8 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 
 import Divider from '@components/Divider';
 
+import NumberInput from '@components/NumberInput';
 import { OrderContext } from '@contexts/OrderContext';
 import ItemOptionInput from '@pages/ItemDetail/components/ItemOptionInput';
 
@@ -29,7 +30,7 @@ const ItemDetail: React.FC = () => {
               </p>
               <p className='item-detail-description'>{order.description}</p>
             </div>
-
+            {/* <NumberInput width='32px' height='32px' /> */}
             <div className='order-amount-wrapper'>
               <p>quantos?</p>
               <p className='order-amount'>

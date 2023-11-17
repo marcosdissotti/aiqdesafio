@@ -50,7 +50,7 @@ export const PromoLabel = styled.label`
   `}
 `;
 
-export const InputRadio = styled.div`
+export const InputContainer = styled.div`
   ${({ theme }) => css`
     width: 342px;
     padding: 4px 0px;
@@ -123,3 +123,5 @@ export const InputRadio = styled.div`
     }
   `}
 `;
+
+export const CheckboxInput = styled.input``;
