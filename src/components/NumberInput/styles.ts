@@ -32,6 +32,10 @@ export const Container = styled.div<{ width?: string; height?: string }>`
       -moz-appearance: textfield;
     }
 
+    input:disabled {
+      background: none;
+    }
+
     button,
     button:focus,
     button:active {

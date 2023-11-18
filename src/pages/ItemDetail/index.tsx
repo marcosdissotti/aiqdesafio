@@ -69,10 +69,10 @@ optionGroup.name + '_' + option.label
           }, 400);
         }}
       >
-        {({ isSubmitting, values }) => (
+        {({ isSubmitting, values, setFieldValue }) => (
           <Form>
             <button type='submit' disabled={isSubmitting}>
-              Submit
+              Fazer pedido
             </button>
             <>
               <div className='item-detail-wrapper  item-detail-padding'>
@@ -84,12 +84,26 @@ optionGroup.name + '_' + option.label
                     </p>
                     <p className='item-detail-description'>{order.description}</p>
                   </div>
-                  {/* <NumberInput width='32px' height='32px' /> */}
                   <div className='order-amount-wrapper'>
-                    <p>quantos?</p>
-                    <p className='order-amount'>
-                      total <span>R$ {JSON.stringify(values)}</span>
-                    </p>
+                    <div>
+                      <p>quantos?</p>
+                      <p className='order-amount'>
+                        total <span>R$ {JSON.stringify(values)}</span>
+                      </p>
+                    </div>
+                    {values[order.name] <= 0 || values[order.name] === undefined ? (
+                      <button
+                        className='add-item-button'
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setFieldValue(order.name, (values[order.name] || 0) + 1);
+                        }}
+                      >
+                        adicionar
+                      </button>
+                    ) : (
+                      <NumberInput name={order.name} width='32px' height='32px' />
+                    )}
                   </div>
                 </div>
                 <img src='https://raw.githubusercontent.com/marcosdissotti/images/main/ceviche_de_salmao.png' alt='' />
@@ -101,9 +115,13 @@ optionGroup.name + '_' + option.label
                     <>
                       <div className='option-wrapper'>
                         <div className='option-info-wrapper'>
-                          <p className='option-name'>{optionGroup.name}</p>
-                          <p className='option-description'>{optionGroup.description}</p>
+                          <div>
+                            <p className='option-name'>{optionGroup.name}</p>
+                            <p className='option-description'>{optionGroup.description}</p>
+                          </div>
+                          {optionGroup.optionIsRequired && <div className='required-option-tag'>obrigatório</div>}
                         </div>
+
                         <div className='option-list'>
                           {optionGroup.optionList &&
                             optionGroup.hasQuantity &&
@@ -209,7 +227,6 @@ optionGroup.name + '_' + option.label
 ex: tirar algum ingrediente, ponto do prato'
                 />
               </div>
-              <button type='submit'>Fazer pedido</button>
             </>
           </Form>
         )}

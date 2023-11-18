@@ -31,16 +31,32 @@ export const Container = styled.main`
       }
 
       .order-amount-wrapper {
+        width: 360px;
         height: 30%;
 
         display: flex;
-        flex-direction: column;
         justify-content: center;
+        align-items: center;
 
         p {
           font-size: 1rem;
           font-weight: 700;
           color: ${theme.colors.darkGray};
+        }
+
+        .add-item-button {
+          width: fit-content;
+          height: 40px;
+          padding: 10px 24px;
+          border-radius: 8px;
+
+          font-size: 14px;
+          font-style: normal;
+          font-family: Nunito;
+          font-size: 0.875rem;
+          line-height: 135.714%;
+          color: ${theme.colors.white};
+          background: ${theme.colors.gray};
         }
 
         .order-amount {
@@ -164,6 +180,28 @@ export const Container = styled.main`
 
       .option-info-wrapper {
         margin-bottom: 16px;
+
+        display: flex;
+
+        .required-option-tag {
+          min-width: 78px;
+          padding: 6px 4px;
+          border-radius: 4px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          font-weight: 700;
+          font-size: 0.75rem;
+          font-family: Nunito;
+          background: ${theme.colors.darkGray};
+          color: ${theme.colors.white};
+        }
+
+        div:first-child {
+          width: 100%;
+        }
       }
       .option-name {
         font-size: 1rem;

@@ -16,11 +16,12 @@ interface NumberInputInterface {
 
 const NumberInput: React.FC<NumberInputInterface> = ({ width, height, name }) => {
   const [field, , helpers] = useField(name);
-  console.log('field.value', field.value);
-  const isDisabled = useMemo(() => field.value <= 0, [field.value]);
+  // console.log('field.value', field.value);
+  const isDisabled = useMemo(() => field.value <= 0 || field.value === undefined, [field.value]);
 
   const renderIconByQuantity = (icon: string) => {
-    if (field.value <= 0) return <img src={RemoveDisabledIconSvg} alt='' />;
+    console.log('field.value', field.value);
+    if (field.value <= 0 || field.value === undefined) return <img src={RemoveDisabledIconSvg} alt='' />;
 
     if (field.value == 1) return <img src={TrashIconSvg} alt='' />;
 
@@ -46,12 +47,12 @@ const NumberInput: React.FC<NumberInputInterface> = ({ width, height, name }) =>
   console.log('name', name);
   return (
     <S.Container width={width} height={height}>
-      <S.Button onClick={(event) => handleDecrementClick(event)} disabled={isDisabled}>
+      <S.Button onClick={(event) => handleDecrementClick(event)} disabled={isDisabled} width={width} height={height}>
         {renderIconByQuantity(RemoveIconSvg)}
       </S.Button>
 
       <input {...field} name={name} value={field.value || 0} disabled />
-      <S.Button onClick={(event) => handleIncrementClick(event)}>
+      <S.Button onClick={(event) => handleIncrementClick(event)} width={width} height={height}>
         <img src={AddIconSvg} alt='' />
       </S.Button>
     </S.Container>
