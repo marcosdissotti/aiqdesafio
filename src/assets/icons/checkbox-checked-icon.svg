@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <!-- Borda cinza -->
+  <rect x="0.5" y="0.5" width="23" height="23" rx="4.5" fill="#A8ADB7" stroke="#A8ADB7" />
+  <!-- Cor e ícone de "check" -->
+  <rect x="0.5" y="0.5" width="23" height="23" rx="4.5" fill="#00A296" />
+  <path d="M7.5 12.5L11 16L16.5 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
