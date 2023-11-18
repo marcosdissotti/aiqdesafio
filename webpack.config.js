@@ -23,7 +23,8 @@ module.exports = {
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@services': path.resolve(__dirname, 'src/services'),
       '@interfaces': path.resolve(__dirname, 'src/interfaces'),
-      '@contexts': path.resolve(__dirname, 'src/contexts')
+      '@contexts': path.resolve(__dirname, 'src/contexts'),
+      '@utils': path.resolve(__dirname, 'src/utils')
     }
   },
   devServer: {

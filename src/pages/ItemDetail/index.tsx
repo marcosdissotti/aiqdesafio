@@ -12,6 +12,7 @@ import CheckboxCheckedIconSvg from '@assets/icons/checkbox-checked-icon.svg';
 
 import * as S from './styles';
 import { OptionInterface, OptionsInterface } from '@interfaces/OrderDataInterface';
+import formatPrice from '@utils/formatPrice';
 
 const ItemDetail: React.FC = () => {
   const { order } = useContext(OrderContext);
@@ -62,12 +63,14 @@ const ItemDetail: React.FC = () => {
 
     if (isSpecialOffer) {
       <p>
-        de R$ {option.saleOriginalPrice} por <span> R$ {option.price}</span>
+        de {formatPrice(option.saleOriginalPrice)} por <span>{formatPrice(option.price)}</span>
       </p>;
     }
 
-    return <p className='option-price'>R$ {option.price}</p>;
+    return <p className='option-price'>{formatPrice(option.price)}</p>;
   };
+
+  console.log('order', order);
 
   return (
     <S.Container>
@@ -84,7 +87,8 @@ const ItemDetail: React.FC = () => {
             setSubmitting(false);
           }, 400);
           console.log(JSON.stringify(values, null, 2));
-          console.log(order);
+          console.log('order', order);
+          console.log('values', values);
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
@@ -98,7 +102,7 @@ const ItemDetail: React.FC = () => {
                   <div className='item-detail-info'>
                     <p className='item-detail-name'>{order.name}</p>
                     <p className='item-detail-price'>
-                      a partir de <span>R$ {order.price}</span>
+                      a partir de <span> {formatPrice(order.price)}</span>
                     </p>
                     <p className='item-detail-description'>{order.description}</p>
                   </div>
@@ -106,7 +110,7 @@ const ItemDetail: React.FC = () => {
                     <div>
                       <p>quantos?</p>
                       <p className='order-amount'>
-                        total <span>R$ {JSON.stringify(values)}</span>
+                        total <span> {JSON.stringify(values)}</span>
                       </p>
                     </div>
                     {values[order.name] <= 0 || values[order.name] === undefined ? (

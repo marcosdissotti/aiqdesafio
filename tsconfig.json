@@ -39,7 +39,8 @@
       "@assets/*":  ["./src/assets/*"],
       "@services/*":  ["./src/services/*"],
       "@interfaces/*":  ["./src/interfaces/*"],
-      "@contexts/*":  ["./src/contexts/*"]
+      "@contexts/*":  ["./src/contexts/*"],
+      "@utils/*":  ["./src/utils/*"]
 		}
   },
 
