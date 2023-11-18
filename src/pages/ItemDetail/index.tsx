@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, useFormikContext } from 'formik';
 
 import Divider from '@components/Divider';
 
@@ -9,25 +9,17 @@ import { OrderContext } from '@contexts/OrderContext';
 import MoneyIconSvg from '@assets/icons/money-icon.svg';
 import RadioCheckedIconSvg from '@assets/icons/radio-checked.svg';
 import CheckboxCheckedIconSvg from '@assets/icons/checkbox-checked-icon.svg';
-// import CheckboxIconSvg from '@assets/icons/checkbox-icon.svg';
 
 import * as S from './styles';
+import { OptionInterface, OptionsInterface } from '@interfaces/OrderDataInterface';
 
 const ItemDetail: React.FC = () => {
   const { order } = useContext(OrderContext);
   const { options } = order;
 
   const [dynamicFieldsInitialValues, setDynamicFieldsInitialValues] = useState({});
-  /**
 
-optionGroup.optionList &&
-optionGroup.hasQuantity &&
-optionGroup.maxOption <= 1
-
-optionGroup.name + '_' + option.label
- */
   useEffect(() => {
-    console.log('options', options);
     if (!options?.length) return;
 
     setDynamicFieldsInitialValues(
@@ -51,7 +43,31 @@ optionGroup.name + '_' + option.label
     );
   }, [options]);
 
-  console.log('dynamicFieldsInitialValues', dynamicFieldsInitialValues);
+  const isRadioInput = (optionGroup: OptionsInterface) => {
+    return !optionGroup.hasQuantity && optionGroup.maxOption <= 1;
+  };
+
+  const isNumberInput = (optionGroup: OptionsInterface) => {
+    return optionGroup.hasQuantity && optionGroup.maxOption <= 1;
+  };
+
+  const isCheckboxInput = (optionGroup: OptionsInterface) => {
+    return optionGroup.maxOption > 1;
+  };
+
+  const renderOptionPriceOrSpecialOffer = (option: OptionInterface) => {
+    if (!(option.price > 0)) return;
+
+    const isSpecialOffer = option.saleOriginalPrice > 0;
+
+    if (isSpecialOffer) {
+      <p>
+        de R$ {option.saleOriginalPrice} por <span> R$ {option.price}</span>
+      </p>;
+    }
+
+    return <p className='option-price'>R$ {option.price}</p>;
+  };
 
   return (
     <S.Container>
@@ -67,6 +83,8 @@ optionGroup.name + '_' + option.label
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 400);
+          console.log(JSON.stringify(values, null, 2));
+          console.log(order);
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
@@ -75,7 +93,7 @@ optionGroup.name + '_' + option.label
               Fazer pedido
             </button>
             <>
-              <div className='item-detail-wrapper  item-detail-padding'>
+              <section className='item-detail-wrapper  item-detail-padding'>
                 <div>
                   <div className='item-detail-info'>
                     <p className='item-detail-name'>{order.name}</p>
@@ -107,16 +125,16 @@ optionGroup.name + '_' + option.label
                   </div>
                 </div>
                 <img src='https://raw.githubusercontent.com/marcosdissotti/images/main/ceviche_de_salmao.png' alt='' />
-              </div>
+              </section>
               <Divider />
-              <div className='item-option-input-container'>
+              <section className='item-option-input-container'>
                 {options &&
                   options.map((optionGroup, index) => (
-                    <>
+                    <fieldset>
                       <div className='option-wrapper'>
                         <div className='option-info-wrapper'>
                           <div>
-                            <p className='option-name'>{optionGroup.name}</p>
+                            <legend className='option-name'>{optionGroup.name}</legend>
                             <p className='option-description'>{optionGroup.description}</p>
                           </div>
                           {optionGroup.optionIsRequired && <div className='required-option-tag'>obrigatório</div>}
@@ -124,30 +142,19 @@ optionGroup.name + '_' + option.label
 
                         <div className='option-list'>
                           {optionGroup.optionList &&
-                            optionGroup.hasQuantity &&
-                            optionGroup.maxOption <= 1 &&
+                            isNumberInput(optionGroup) &&
                             optionGroup.optionList.map((option, index) => (
                               <S.InputContainer>
                                 <div>
                                   <NumberInput name={optionGroup.name + '_' + option.label} />
-
                                   {option.saleOriginalPrice > 0 && <img className='option-icons' src={MoneyIconSvg} />}
                                   <label>{option.label}</label>
                                 </div>
-                                <div className='option-price-wrapper'>
-                                  {option.saleOriginalPrice > 0 ? (
-                                    <p>
-                                      de R$ {option.saleOriginalPrice} por <span> R$ {option.price}</span>
-                                    </p>
-                                  ) : (
-                                    option.price > 0 && <p className='option-price'>R$ {option.price}</p>
-                                  )}
-                                </div>
+                                <div className='option-price-wrapper'>{renderOptionPriceOrSpecialOffer(option)}</div>
                               </S.InputContainer>
                             ))}
                           {optionGroup.optionList &&
-                            !optionGroup.hasQuantity &&
-                            optionGroup.maxOption <= 1 &&
+                            isRadioInput(optionGroup) &&
                             optionGroup.optionList.map((option, index) => (
                               <S.InputContainer>
                                 <div>
@@ -160,26 +167,18 @@ optionGroup.name + '_' + option.label
 
                                   {values[optionGroup.name] === option.label ? (
                                     <>
-                                      <S.PromoLabel>{option.label}</S.PromoLabel>
+                                      <S.HighlightLabel>{option.label}</S.HighlightLabel>
                                     </>
                                   ) : (
                                     <label>{option.label}</label>
                                   )}
                                 </div>
-                                <div className='option-price-wrapper'>
-                                  {option.saleOriginalPrice > 0 ? (
-                                    <p>
-                                      de R$ {option.saleOriginalPrice} por <span> R$ {option.price}</span>
-                                    </p>
-                                  ) : (
-                                    option.price > 0 && <p className='option-price'>R$ {option.price}</p>
-                                  )}
-                                </div>
+                                <div className='option-price-wrapper'>{renderOptionPriceOrSpecialOffer(option)}</div>
                               </S.InputContainer>
                             ))}
 
                           {optionGroup.optionList &&
-                            optionGroup.maxOption > 1 &&
+                            isCheckboxInput(optionGroup) &&
                             optionGroup.optionList.map((option, index) => (
                               <S.InputContainer>
                                 <div>
@@ -195,38 +194,32 @@ optionGroup.name + '_' + option.label
                                   )}
 
                                   {option.saleOriginalPrice > 0 && <img className='option-icons' src={MoneyIconSvg} />}
+
                                   {values[optionGroup.name] === option.label ? (
                                     <>
-                                      <S.PromoLabel>{option.label}</S.PromoLabel>
+                                      <S.HighlightLabel>{option.label}</S.HighlightLabel>
                                     </>
                                   ) : (
                                     <label>{option.label}</label>
                                   )}
                                 </div>
-                                <div className='option-price-wrapper'>
-                                  {option.saleOriginalPrice > 0 ? (
-                                    <p>
-                                      de R$ {option.saleOriginalPrice} por <span> R$ {option.price}</span>
-                                    </p>
-                                  ) : (
-                                    option.price > 0 && <p className='option-price'>R$ {option.price}</p>
-                                  )}
-                                </div>
+                                <div className='option-price-wrapper'>{renderOptionPriceOrSpecialOffer(option)}</div>
                               </S.InputContainer>
                             ))}
                         </div>
                       </div>
                       <Divider />
-                    </>
+                    </fieldset>
                   ))}
-              </div>
-              <div className='observation-wrapper'>
-                <textarea
-                  name={order.observation}
+              </section>
+              <section className='observation-wrapper'>
+                <Field
+                  as='textarea'
+                  name='observation'
                   placeholder='alguma observação do item? • opcional
 ex: tirar algum ingrediente, ponto do prato'
                 />
-              </div>
+              </section>
             </>
           </Form>
         )}

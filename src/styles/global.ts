@@ -53,6 +53,13 @@ export const GlobalStyle = createGlobalStyle`
       cursor: pointer;
     }
 
+    fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      min-width: 0;
+    }
+
     @font-face {
       font-family: 'Nunito';
       src:

@@ -14,10 +14,12 @@ export interface OptionsInterface {
   hasQuantity: boolean;
   maxOption: number;
   optionIsRequired: boolean;
-  optionList: Array<{
-    label: string;
-    price: number;
-    saleOriginalPrice: number;
-    quantity: number;
-  }>;
+  optionList: Array<OptionInterface>;
+}
+
+export interface OptionInterface {
+  label: string;
+  price: number;
+  saleOriginalPrice: number;
+  quantity: number;
 }

@@ -221,7 +221,7 @@ export const Container = styled.main`
   `}
 `;
 
-export const PromoLabel = styled.label`
+export const HighlightLabel = styled.label`
   ${({ theme }) => css`
     font-weight: 700;
     font-size: 0.875rem;
@@ -255,7 +255,6 @@ export const InputContainer = styled.div`
 
     input {
       height: 80%;
-      /* margin-right: 4px; */
     }
 
     input[type='radio'] {
@@ -265,15 +264,6 @@ export const InputContainer = styled.div`
       border: ${theme.colors.silverGray};
     }
 
-    /* input[type='checkbox'] {
-      -webkit-appearance: none;
-
-      width: 20px;
-      height: 20px;
-    }
-    input[type='checkbox']:checked {
-      background-color: ${theme.colors.bluishGreen};
-    } */
     .option-price-wrapper {
       width: 40%;
       display: flex;
@@ -317,13 +307,10 @@ export const CheckboxInput = styled.input`
   ${({ theme }) => css`
     width: 24px;
     height: 24px;
-    /* input[type='checkbox']:checked {
-      background-color: ${theme.colors.bluishGreen};
-    } */
 
     &:checked {
-      background-color: ${theme.colors.bluishGreen}; /* Cor de fundo quando marcado */
-      border-color: ${theme.colors.bluishGreen}; /* Cor da borda quando marcado */
+      background-color: ${theme.colors.bluishGreen};
+      border-color: ${theme.colors.bluishGreen};
     }
   `}
 `;

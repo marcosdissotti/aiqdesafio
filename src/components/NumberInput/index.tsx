@@ -16,11 +16,9 @@ interface NumberInputInterface {
 
 const NumberInput: React.FC<NumberInputInterface> = ({ width, height, name }) => {
   const [field, , helpers] = useField(name);
-  // console.log('field.value', field.value);
   const isDisabled = useMemo(() => field.value <= 0 || field.value === undefined, [field.value]);
 
   const renderIconByQuantity = (icon: string) => {
-    console.log('field.value', field.value);
     if (field.value <= 0 || field.value === undefined) return <img src={RemoveDisabledIconSvg} alt='' />;
 
     if (field.value == 1) return <img src={TrashIconSvg} alt='' />;
@@ -34,8 +32,6 @@ const NumberInput: React.FC<NumberInputInterface> = ({ width, height, name }) =>
     const value = field.value || 0;
 
     helpers.setValue(value + 1);
-
-    console.log('isDisabled', isDisabled);
   };
 
   const handleDecrementClick = (event) => {
@@ -44,7 +40,7 @@ const NumberInput: React.FC<NumberInputInterface> = ({ width, height, name }) =>
 
     helpers.setValue(value - 1);
   };
-  console.log('name', name);
+
   return (
     <S.Container width={width} height={height}>
       <S.Button onClick={(event) => handleDecrementClick(event)} disabled={isDisabled} width={width} height={height}>
