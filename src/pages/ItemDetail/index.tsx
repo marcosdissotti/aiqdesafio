@@ -59,6 +59,10 @@ const ItemDetail: React.FC = () => {
     return optionGroup.maxOption > 1;
   };
 
+  const isItemQuantityHasBeenAdded = (value: number) => {
+    return value <= 0 || value === undefined;
+  };
+
   function calcSubtotalPriceFromRadioField(optionData: OptionsInterface, fieldValue: string | number): number {
     const optionListItem = optionData?.optionList.find((option) => option.label === fieldValue);
     if (!optionListItem) throw new Error("Can't find option label in option.optionList");
@@ -148,11 +152,13 @@ const ItemDetail: React.FC = () => {
                   <div className='order-amount-wrapper'>
                     <div>
                       <p>quantos?</p>
-                      <p className='order-amount'>
-                        total <span> {formatPrice(calcTotalOrderPrice(values))}</span>
-                      </p>
+                      {!isItemQuantityHasBeenAdded(values[order.name]) && (
+                        <p className='order-amount'>
+                          total <span> {formatPrice(calcTotalOrderPrice(values))}</span>
+                        </p>
+                      )}
                     </div>
-                    {values[order.name] <= 0 || values[order.name] === undefined ? (
+                    {isItemQuantityHasBeenAdded(values[order.name]) ? (
                       <button
                         className='add-item-button'
                         onClick={(event) => {

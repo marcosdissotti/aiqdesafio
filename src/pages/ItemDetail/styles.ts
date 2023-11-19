@@ -208,14 +208,18 @@ export const Container = styled.main`
         color: ${theme.colors.black};
       }
       .option-description {
-        font-size: 0.75rem;
         font-weight: 700;
+        font-size: 0.75rem;
         color: ${theme.colors.gray};
       }
 
       input[type='radio']:checked {
         display: none;
       }
+    }
+
+    input {
+      cursor: pointer;
     }
   `}
 `;

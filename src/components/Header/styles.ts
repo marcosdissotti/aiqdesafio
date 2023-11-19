@@ -44,7 +44,7 @@ export const Container = styled.header`
     }
 
     .aiqfome-logo {
-      margin-right: 2.5rem;
+      margin-right: 64px;
     }
 
     .login-button-wrapper {

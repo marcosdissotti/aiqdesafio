@@ -15,6 +15,12 @@ export const Container = styled.div`
 
     background: ${theme.colors.white};
 
+    font-weight: 600;
+    font-size: 0.875rem;
+    font-family: Nunito;
+    line-height: 135.714%;
+    color: ${theme.colors.gray};
+
     img {
       width: 24px;
       height: 24px;

@@ -19,7 +19,7 @@ Regras:
 - Quando aparecer os input type number? quando o hasQuantity ser igual a true
 
 <p align="center">
-   <img src="https://raw.githubusercontent.com/marcosdissotti/images/main/aiqfome-github.png" />
+   <img src="https://raw.githubusercontent.com/marcosdissotti/images/main/cover.png" />
 </p>
 
 # AiqDesafio

@@ -9,7 +9,9 @@ const Header: React.FC = () => {
   return (
     <S.Container>
       <div>
-        <img className='aiqfome-logo' src={AiqfomeIconSvg} alt='logo da empresa do aplicativo de delivery aiqfome' />
+        <div>
+          <img className='aiqfome-logo' src={AiqfomeIconSvg} alt='logo da empresa do aplicativo de delivery aiqfome' />
+        </div>
         <DeliveryAddress />
       </div>
 
