@@ -15,8 +15,8 @@ export const HighlightLabel = styled.label`
 
 export const CheckboxInput = styled.input`
   ${({ theme }) => css`
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
 
     &:checked {
       background-color: ${theme.colors.bluishGreen};

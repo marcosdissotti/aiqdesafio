@@ -3,9 +3,10 @@ import formatPrice from '@utils/formatPrice';
 interface OptionPriceOrSaleInterface {
   price: number;
   saleOriginalPrice: number;
+  optionIsRequired: boolean;
 }
 
-const OptionPriceOrSale: React.FC<OptionPriceOrSaleInterface> = ({ price, saleOriginalPrice }) => {
+const OptionPriceOrSale: React.FC<OptionPriceOrSaleInterface> = ({ price, saleOriginalPrice, optionIsRequired }) => {
   if (!(price > 0)) return;
   const isSpecialOffer = saleOriginalPrice > 0;
 
@@ -17,7 +18,12 @@ const OptionPriceOrSale: React.FC<OptionPriceOrSaleInterface> = ({ price, saleOr
     );
   }
 
-  return <p className='option-price'>{formatPrice(price)}</p>;
+  return (
+    <p className='option-price'>
+      {!optionIsRequired && `+`}
+      {formatPrice(price)}
+    </p>
+  );
 };
 
 export default OptionPriceOrSale;

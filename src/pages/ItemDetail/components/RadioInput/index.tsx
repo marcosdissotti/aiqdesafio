@@ -34,7 +34,13 @@ const RadioInput: React.FC<RadioInput> = ({ option, optionGroup, values }) => {
         )}
       </div>
       <div className='option-price-wrapper'>
-        {option && <OptionPriceOrSale price={option.price} saleOriginalPrice={option.saleOriginalPrice} />}
+        {option && (
+          <OptionPriceOrSale
+            price={option.price}
+            saleOriginalPrice={option.saleOriginalPrice}
+            optionIsRequired={optionGroup.optionIsRequired}
+          />
+        )}
       </div>
     </S.Container>
   );

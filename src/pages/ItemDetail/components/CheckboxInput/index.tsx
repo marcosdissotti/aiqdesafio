@@ -29,7 +29,13 @@ const CheckboxInput: React.FC<CheckboxInput> = ({ option, optionGroup, values })
         )}
       </div>
       <div className='option-price-wrapper'>
-        {<OptionPriceOrSale price={option.price} saleOriginalPrice={option.saleOriginalPrice} />}
+        {
+          <OptionPriceOrSale
+            price={option.price}
+            saleOriginalPrice={option.saleOriginalPrice}
+            optionIsRequired={optionGroup.optionIsRequired}
+          />
+        }
       </div>
     </S.Container>
   );

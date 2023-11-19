@@ -203,6 +203,7 @@ const ItemDetail: React.FC = () => {
                                   <OptionPriceOrSale
                                     price={option.price}
                                     saleOriginalPrice={option.saleOriginalPrice}
+                                    optionIsRequired={optionGroup.optionIsRequired}
                                   />
                                 </div>
                               </S.InputContainer>
