@@ -21,6 +21,10 @@ export const Container = styled.div`
     line-height: 135.714%;
     color: ${theme.colors.gray};
 
+    @media (max-width: ${theme.breakpoints.mobile}) {
+      display: none;
+    }
+
     img {
       width: 24px;
       height: 24px;

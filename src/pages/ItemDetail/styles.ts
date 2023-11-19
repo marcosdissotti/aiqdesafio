@@ -3,8 +3,10 @@ import styled, { css } from 'styled-components';
 export const Container = styled.main`
   ${({ theme }) => css`
     width: 100%;
+    height: 100%;
 
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     justify-content: center;
 
@@ -17,6 +19,11 @@ export const Container = styled.main`
 
       display: flex;
 
+      @media (max-width: ${theme.breakpoints.mobile}) {
+        flex-direction: column;
+        align-items: center;
+      }
+
       div:first-child {
         width: 100%;
       }
@@ -25,6 +32,10 @@ export const Container = styled.main`
         max-height: 195px;
 
         border-radius: 12px;
+
+        @media (max-width: ${theme.breakpoints.mobile}) {
+          margin: 24px;
+        }
       }
 
       .item-detail-info {

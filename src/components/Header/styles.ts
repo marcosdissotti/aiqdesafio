@@ -51,6 +51,10 @@ export const Container = styled.header`
       width: fit-content;
       grid-column: 3;
       justify-self: end;
+
+      @media (max-width: ${theme.breakpoints.mobile}) {
+        display: none;
+      }
     }
   `}
 `;

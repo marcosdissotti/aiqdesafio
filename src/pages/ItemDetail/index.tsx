@@ -128,15 +128,7 @@ const ItemDetail: React.FC = () => {
         <h1>Matsuri Concept</h1>
       </div>
 
-      <Formik
-        initialValues={dynamicFieldsInitialValues}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
+      <Formik initialValues={dynamicFieldsInitialValues} onSubmit={(values, { setSubmitting }) => {}}>
         {({ values, setFieldValue }) => (
           <Form>
             <>

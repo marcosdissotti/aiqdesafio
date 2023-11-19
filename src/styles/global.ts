@@ -31,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 93.74%;
       }
 
-      @media (max-width: 720px) {
+      @media (max-width: ${theme.breakpoints.tablet}) { tablet
         font-size: 87.5%;
       }
     }
