@@ -107,7 +107,7 @@ export const Container = styled.main`
 
     .establishment_info {
       width: 100%;
-      padding: 24px 84px;
+      padding: 24px 84px 2px 84px;
 
       display: flex;
       align-items: center;

@@ -95,8 +95,8 @@ const ItemDetail: React.FC = () => {
 
     const totalPriceFromOptions = Object.entries(values).reduce((totalPrice, [fieldName, fieldValue]) => {
       const optionData = options.find((option) => option.name === fieldName);
-      if (!optionData) return 0;
 
+      if (!optionData) return 0;
       if (typeof fieldValue === 'string' && fieldName === 'qual o tamanho?') {
         const amountOfThisItem = (values[order.name] as number) || 1;
 
