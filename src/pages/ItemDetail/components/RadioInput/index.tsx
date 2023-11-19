@@ -6,8 +6,9 @@ import { FormState, OptionInterface, OptionsInterface } from '@interfaces/OrderD
 import MoneyIconSvg from '@assets/icons/money-icon.svg';
 import RadioCheckedIconSvg from '@assets/icons/radio-checked.svg';
 
-import * as S from './styles';
 import OptionPriceOrSale from '@pages/ItemDetail/components/OptionPriceOrSale';
+
+import * as S from './styles';
 
 interface RadioInput {
   optionGroup: OptionsInterface;

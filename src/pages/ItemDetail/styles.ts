@@ -14,6 +14,7 @@ export const Container = styled.main`
 
     .item-detail-wrapper {
       width: 100%;
+
       display: flex;
 
       div:first-child {
@@ -35,8 +36,8 @@ export const Container = styled.main`
         height: 30%;
 
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
 
         p {
           font-size: 1rem;
@@ -45,13 +46,12 @@ export const Container = styled.main`
         }
 
         .add-item-button {
-          width: fit-content;
           height: 40px;
+          width: fit-content;
           padding: 10px 24px;
           border-radius: 8px;
 
           font-size: 14px;
-          font-style: normal;
           font-family: Nunito;
           font-size: 0.875rem;
           line-height: 135.714%;
@@ -68,10 +68,10 @@ export const Container = styled.main`
           color: ${theme.colors.gray};
 
           span {
-            color: ${theme.colors.darkGray};
             font-weight: 700;
             font-size: 0.875rem;
             line-height: 135.714%;
+            color: ${theme.colors.darkGray};
           }
         }
       }
@@ -143,18 +143,18 @@ export const Container = styled.main`
 
       textarea {
         width: 35%;
-        margin: 24px 0 48px 0;
         padding: 10px 12px;
+        margin: 24px 0 48px 0;
+        border: 1px solid ${theme.colors.lightGray};
 
         resize: none;
         font-weight: 600;
-        font-family: Nunito;
         border-radius: 4px;
+        font-family: Nunito;
         font-size: 0.875rem;
         line-height: 135.714%;
         color: ${theme.colors.gray};
         background: ${theme.colors.white};
-        border: 1px solid ${theme.colors.lightGray};
       }
     }
 
@@ -162,12 +162,11 @@ export const Container = styled.main`
       display: flex;
       flex-direction: column;
 
-      color: ${theme.colors.gray};
-
+      font-weight: 400;
       font-family: Nunito;
       font-size: 0.875rem;
-      font-weight: 400;
       line-height: 135.714%;
+      color: ${theme.colors.gray};
 
       .option-wrapper {
         padding: 24px 132px;
@@ -249,6 +248,7 @@ export const InputContainer = styled.div`
 
       label {
         margin-left: 4px;
+
         text-align: center;
       }
     }
@@ -266,6 +266,7 @@ export const InputContainer = styled.div`
 
     .option-price-wrapper {
       width: 40%;
+
       display: flex;
       justify-content: flex-end;
 
@@ -289,10 +290,10 @@ export const InputContainer = styled.div`
       }
 
       .option-price {
-        color: ${theme.colors.primary};
-        font-size: 0.875rem;
         font-weight: 700;
+        font-size: 0.875rem;
         line-height: 135.714%;
+        color: ${theme.colors.primary};
       }
     }
 

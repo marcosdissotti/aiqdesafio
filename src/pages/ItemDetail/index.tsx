@@ -2,19 +2,16 @@ import { useContext, useEffect, useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 
 import Divider from '@components/Divider';
-
+import formatPrice from '@utils/formatPrice';
 import NumberInput from '@components/NumberInput';
 import { OrderContext } from '@contexts/OrderContext';
-
 import MoneyIconSvg from '@assets/icons/money-icon.svg';
-import CheckboxCheckedIconSvg from '@assets/icons/checkbox-checked-icon.svg';
+import RadioInput from '@pages/ItemDetail/components/RadioInput';
+import CheckboxInput from '@pages/ItemDetail/components/CheckboxInput';
+import OptionPriceOrSale from '@pages/ItemDetail/components/OptionPriceOrSale';
+import { OptionsInterface, FormState, NumberInputValue } from '@interfaces/OrderDataInterface';
 
 import * as S from './styles';
-import { OptionInterface, OptionsInterface, FormState, NumberInputValue } from '@interfaces/OrderDataInterface';
-import RadioInput from '@pages/ItemDetail/components/RadioInput';
-import formatPrice from '@utils/formatPrice';
-import OptionPriceOrSale from '@pages/ItemDetail/components/OptionPriceOrSale';
-import CheckboxInput from '@pages/ItemDetail/components/CheckboxInput';
 
 const ItemDetail: React.FC = () => {
   const { order } = useContext(OrderContext);
