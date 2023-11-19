@@ -6,6 +6,9 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  font-size: 1rem;
+  font-family: Nunito;
+
   img {
     width: 30%;
   }

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {} from 'react-router-dom';
 
 import { OrderDataInterface } from '@interfaces/OrderDataInterface';
 
@@ -9,6 +8,10 @@ export default async function getMenuItemDetailsData(): Promise<OrderDataInterfa
 
     return response.data;
   } catch (error) {
-    throw new Error('Faleid fetch infos from Order API.');
+    if (error.code === 'ERR_NETWORK') {
+      return (window.location = '/error');
+    }
+
+    throw new Error('Faleid fetch infos from Order API from json-server.');
   }
 }
