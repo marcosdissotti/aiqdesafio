@@ -9,6 +9,7 @@ export interface OrderDataInterface {
   options: Array<OptionsInterface>;
 }
 export interface OptionsInterface {
+  optionGroup: any;
   name: string;
   description: string;
   hasQuantity: boolean;

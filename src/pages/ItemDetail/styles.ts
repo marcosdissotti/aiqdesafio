@@ -302,15 +302,3 @@ export const InputContainer = styled.div`
     }
   `}
 `;
-
-export const CheckboxInput = styled.input`
-  ${({ theme }) => css`
-    width: 24px;
-    height: 24px;
-
-    &:checked {
-      background-color: ${theme.colors.bluishGreen};
-      border-color: ${theme.colors.bluishGreen};
-    }
-  `}
-`;

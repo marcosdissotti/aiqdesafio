@@ -7,11 +7,14 @@ import NumberInput from '@components/NumberInput';
 import { OrderContext } from '@contexts/OrderContext';
 
 import MoneyIconSvg from '@assets/icons/money-icon.svg';
-import RadioCheckedIconSvg from '@assets/icons/radio-checked.svg';
 import CheckboxCheckedIconSvg from '@assets/icons/checkbox-checked-icon.svg';
 
 import * as S from './styles';
 import { OptionInterface, OptionsInterface, FormState, NumberInputValue } from '@interfaces/OrderDataInterface';
+import RadioInput from '@pages/ItemDetail/components/RadioInput';
+import formatPrice from '@utils/formatPrice';
+import OptionPriceOrSale from '@pages/ItemDetail/components/OptionPriceOrSale';
+import CheckboxInput from '@pages/ItemDetail/components/CheckboxInput';
 
 const ItemDetail: React.FC = () => {
   const { order } = useContext(OrderContext);
@@ -58,25 +61,6 @@ const ItemDetail: React.FC = () => {
   const isCheckboxInput = (optionGroup: OptionsInterface) => {
     return optionGroup.maxOption > 1;
   };
-
-  const renderOptionPriceOrSpecialOffer = (option: OptionInterface) => {
-    if (!(option.price > 0)) return;
-
-    const isSpecialOffer = option.saleOriginalPrice > 0;
-
-    if (isSpecialOffer) {
-      <p>
-        de {formatPrice(option.saleOriginalPrice)} por <span>{formatPrice(option.price)}</span>
-      </p>;
-    }
-
-    return <p className='option-price'>{formatPrice(option.price)}</p>;
-  };
-
-  function formatPrice(value: number) {
-    const sanitizedValue = value || 0;
-    return sanitizedValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  }
 
   function calcSubtotalPriceFromRadioField(optionData: OptionsInterface, fieldValue: string | number): number {
     const optionListItem = optionData?.optionList.find((option) => option.label === fieldValue);
@@ -136,8 +120,6 @@ const ItemDetail: React.FC = () => {
     return totalPriceFromOptions;
   }
 
-  console.log('dynamicFieldsInitialValues', dynamicFieldsInitialValues);
-
   return (
     <S.Container>
       <div className='establishment_info'>
@@ -154,11 +136,8 @@ const ItemDetail: React.FC = () => {
           }, 400);
         }}
       >
-        {({ isSubmitting, values, setFieldValue }) => (
+        {({ values, setFieldValue }) => (
           <Form>
-            <button type='submit' disabled={isSubmitting}>
-              Fazer pedido
-            </button>
             <>
               <section className='item-detail-wrapper  item-detail-padding'>
                 <div>
@@ -197,7 +176,7 @@ const ItemDetail: React.FC = () => {
               <section className='item-option-input-container'>
                 {options &&
                   options.map((optionGroup, index) => (
-                    <fieldset>
+                    <fieldset key={index}>
                       <div className='option-wrapper'>
                         <div className='option-info-wrapper'>
                           <div>
@@ -211,67 +190,30 @@ const ItemDetail: React.FC = () => {
                           {optionGroup.optionList &&
                             isNumberInput(optionGroup) &&
                             optionGroup.optionList.map((option, index) => (
-                              <S.InputContainer>
+                              <S.InputContainer key={index}>
                                 <div>
                                   <NumberInput name={optionGroup.name + '.' + option.label} />
                                   {option.saleOriginalPrice > 0 && <img className='option-icons' src={MoneyIconSvg} />}
                                   <label>{option.label}</label>
                                 </div>
-                                <div className='option-price-wrapper'>{renderOptionPriceOrSpecialOffer(option)}</div>
+                                <div className='option-price-wrapper'>
+                                  <OptionPriceOrSale
+                                    price={option.price}
+                                    saleOriginalPrice={option.saleOriginalPrice}
+                                  />
+                                </div>
                               </S.InputContainer>
                             ))}
                           {optionGroup.optionList &&
                             isRadioInput(optionGroup) &&
                             optionGroup.optionList.map((option, index) => (
-                              <S.InputContainer>
-                                <div>
-                                  <Field type='radio' name={optionGroup.name} value={option.label} />
-
-                                  {values[optionGroup.name] === option.label && (
-                                    <img className='option-icons' src={RadioCheckedIconSvg} />
-                                  )}
-                                  {option.saleOriginalPrice > 0 && <img className='option-icons' src={MoneyIconSvg} />}
-
-                                  {values[optionGroup.name] === option.label ? (
-                                    <>
-                                      <S.HighlightLabel>{option.label}</S.HighlightLabel>
-                                    </>
-                                  ) : (
-                                    <label>{option.label}</label>
-                                  )}
-                                </div>
-                                <div className='option-price-wrapper'>{renderOptionPriceOrSpecialOffer(option)}</div>
-                              </S.InputContainer>
+                              <RadioInput optionGroup={optionGroup} option={option} values={values} key={index} />
                             ))}
 
                           {optionGroup.optionList &&
                             isCheckboxInput(optionGroup) &&
                             optionGroup.optionList.map((option, index) => (
-                              <S.InputContainer>
-                                <div>
-                                  <Field
-                                    type='checkbox'
-                                    name={optionGroup.name}
-                                    value={option.label}
-                                    as={S.CheckboxInput}
-                                  />
-
-                                  {values[optionGroup.name] === option.label && (
-                                    <img className='option-icons' src={CheckboxCheckedIconSvg} width={10} height={10} />
-                                  )}
-
-                                  {option.saleOriginalPrice > 0 && <img className='option-icons' src={MoneyIconSvg} />}
-
-                                  {values[optionGroup.name] === option.label ? (
-                                    <>
-                                      <S.HighlightLabel>{option.label}</S.HighlightLabel>
-                                    </>
-                                  ) : (
-                                    <label>{option.label}</label>
-                                  )}
-                                </div>
-                                <div className='option-price-wrapper'>{renderOptionPriceOrSpecialOffer(option)}</div>
-                              </S.InputContainer>
+                              <CheckboxInput optionGroup={optionGroup} option={option} values={values} key={index} />
                             ))}
                         </div>
                       </div>
