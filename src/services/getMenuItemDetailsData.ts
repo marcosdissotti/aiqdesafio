@@ -4,7 +4,7 @@ import { OrderDataInterface } from '@interfaces/OrderDataInterface';
 
 export default async function getMenuItemDetailsData(): Promise<OrderDataInterface> {
   try {
-    const response = await axios.get<OrderDataInterface>(`http://localhost:3001/order`);
+    const response = await axios.get<OrderDataInterface>(`${process.env.REACT_APP_JSON_SERVER}/order`);
 
     return response.data;
   } catch (error) {

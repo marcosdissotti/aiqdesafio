@@ -1,18 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
-module.exports = {
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+module.exports = (env) => ({
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
-  mode: 'development',
+  mode: isDevelopment ? 'development' : 'production',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html'
-    })
-  ],
   resolve: {
     modules: [__dirname, 'src', 'node_modules'],
     extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
@@ -35,6 +33,14 @@ module.exports = {
     port: 3000,
     historyApiFallback: true
   },
+  plugins: [
+    new Dotenv({
+      path: `./.env.${env.production ? 'production' : 'development'}`
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html')
+    })
+  ],
   module: {
     rules: [
       {
@@ -60,4 +66,4 @@ module.exports = {
       }
     ]
   }
-};
+});
