@@ -97,21 +97,21 @@ const ItemDetail: React.FC = () => {
       const optionData = options.find((option) => option.name === fieldName);
 
       if (!optionData) return 0;
-      if (typeof fieldValue === 'string' && fieldName === 'qual o tamanho?') {
+      if (isRadioInput(optionData) && fieldName === 'qual o tamanho?') {
         const amountOfThisItem = (values[order.name] as number) || 1;
 
         return totalPrice + calcSubtotalPriceFromRadioField(optionData, fieldValue) * amountOfThisItem;
       }
 
-      if (typeof fieldValue === 'string') {
+      if (isRadioInput(optionData)) {
         return totalPrice + calcSubtotalPriceFromRadioField(optionData, fieldValue);
       }
 
-      if (typeof fieldValue === 'object' && fieldValue?.length) {
+      if (isCheckboxInput(optionData)) {
         return totalPrice + calcSubtotalPriceFromCheckboxField(optionData, fieldValue as string[]);
       }
 
-      if (typeof fieldValue === 'object') {
+      if (isNumberInput(optionData)) {
         return totalPrice + calcSubtotalFromManyNumberInputsField(optionData, fieldValue as NumberInputValue);
       }
 

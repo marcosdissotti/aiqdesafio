@@ -77,7 +77,8 @@ http://localhost:3000/error
 
 Antes de começar a desenvolver, precisava estabelecer a expectativa da tela de detalhes do item, então coloquei como objetivo que iria fazer o mais próximo possível da realidade de uma aplicação de cardápio no âmbito do detalhes do pedido e principalmente os opcionais do cardápio.
 
-Partindo deste principio, precisava estruturar os dados observando as telas e campos do design e prover os dados de um backend, assim com minha experiencia prévia desenvolvi um contrato de api como pode ser observado na imagem abaixo, optei por utilizar o json-server pela facilidade de configuração, porém o mais correto seria utilizar um BFF (Back-end for Front-end) ou miragejs, o contrato completo pode ser encontrado em src/interfaces/OrderDataInterface e no mock do json-server o db.json.
+Partindo deste principio, precisava estruturar os dados observando as telas e campos do design e prover os dados de um backend, assim com minha experiencia prévia desenvolvi um contrato de api como pode ser observado na imagem abaixo, optei por utilizar o json-server pela facilidade de configuração, porém o mais correto seria utilizar um BFF (Back-end for Front-end) ou miragejs, o contrato completo pode ser encontrado em [src/interfaces/OrderDataInterface](./src/interfaces/OrderDataInterface)
+e no mock do json-server o db.json.
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/marcosdissotti/images/main/dados.png" alt="imagem com um opcional do cardápio onde eu destaco o campo qual o tamanho?" width="400">
@@ -150,11 +151,3 @@ Após definir o contrato da API e as regras para exibição do formulário dinâ
 Contato: marcosdissotti@gmail.com
 
 Linkedin: https://www.linkedin.com/in/marcosdissotti/
-
-```
-
-```
-
-```
-
-```
