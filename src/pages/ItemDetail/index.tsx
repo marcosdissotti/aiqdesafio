@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Formik, Field, Form, useFormikContext } from 'formik';
+import { Formik, Field, Form } from 'formik';
 
 import Divider from '@components/Divider';
 
@@ -11,8 +11,7 @@ import RadioCheckedIconSvg from '@assets/icons/radio-checked.svg';
 import CheckboxCheckedIconSvg from '@assets/icons/checkbox-checked-icon.svg';
 
 import * as S from './styles';
-import { OptionInterface, OptionsInterface } from '@interfaces/OrderDataInterface';
-import formatPrice from '@utils/formatPrice';
+import { OptionInterface, OptionsInterface, FormState, NumberInputValue } from '@interfaces/OrderDataInterface';
 
 const ItemDetail: React.FC = () => {
   const { order } = useContext(OrderContext);
@@ -28,12 +27,16 @@ const ItemDetail: React.FC = () => {
         const hasQuantityOption = currentOption.optionList && currentOption.hasQuantity && currentOption.maxOption <= 1;
         if (hasQuantityOption) {
           const quantityOption = currentOption.optionList.map((option) => {
-            return currentOption.name + '_' + option.label;
+            return {
+              [currentOption.name]: {
+                [option.label]: 0
+              }
+            };
           });
 
           return {
             ...fields,
-            ...quantityOption.reduce((acc, name) => ({ ...acc, [name]: 0 }), {})
+            ...quantityOption.reduce((acc, name) => ({ ...acc, ...name }), {})
           };
         }
         return {
@@ -70,7 +73,70 @@ const ItemDetail: React.FC = () => {
     return <p className='option-price'>{formatPrice(option.price)}</p>;
   };
 
-  console.log('order', order);
+  function formatPrice(value: number) {
+    const sanitizedValue = value || 0;
+    return sanitizedValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function calcSubtotalPriceFromRadioField(optionData: OptionsInterface, fieldValue: string | number): number {
+    const optionListItem = optionData?.optionList.find((option) => option.label === fieldValue);
+    if (!optionListItem) throw new Error("Can't find option label in option.optionList");
+
+    return optionListItem.price;
+  }
+
+  function calcSubtotalPriceFromCheckboxField(optionData: OptionsInterface, fieldValue: string[]): number {
+    const totalPriceOfCheckboxes = optionData?.optionList.reduce((total, optionItem) => {
+      if (!fieldValue.includes(optionItem.label)) return total;
+
+      return total + optionItem.price;
+    }, 0);
+
+    return totalPriceOfCheckboxes;
+  }
+
+  function calcSubtotalFromManyNumberInputsField(optionData: OptionsInterface, fieldValue: NumberInputValue): number {
+    return optionData?.optionList.reduce((total, optionItem) => {
+      const optionItemAmountSelected = fieldValue[optionItem.label] || 0;
+
+      if (!optionItemAmountSelected) return total;
+
+      return total + optionItemAmountSelected * optionItem.price;
+    }, 0);
+  }
+
+  function calcTotalOrderPrice(values: FormState): number {
+    if (!values) return 0;
+
+    const totalPriceFromOptions = Object.entries(values).reduce((totalPrice, [fieldName, fieldValue]) => {
+      const optionData = options.find((option) => option.name === fieldName);
+      if (!optionData) return 0;
+
+      if (typeof fieldValue === 'string' && fieldName === 'qual o tamanho?') {
+        const amountOfThisItem = (values[order.name] as number) || 1;
+
+        return totalPrice + calcSubtotalPriceFromRadioField(optionData, fieldValue) * amountOfThisItem;
+      }
+
+      if (typeof fieldValue === 'string') {
+        return totalPrice + calcSubtotalPriceFromRadioField(optionData, fieldValue);
+      }
+
+      if (typeof fieldValue === 'object' && fieldValue?.length) {
+        return totalPrice + calcSubtotalPriceFromCheckboxField(optionData, fieldValue as string[]);
+      }
+
+      if (typeof fieldValue === 'object') {
+        return totalPrice + calcSubtotalFromManyNumberInputsField(optionData, fieldValue as NumberInputValue);
+      }
+
+      throw new Error('There are some new type of input that total price calculation algorithm does not recognize');
+    }, 0);
+
+    return totalPriceFromOptions;
+  }
+
+  console.log('dynamicFieldsInitialValues', dynamicFieldsInitialValues);
 
   return (
     <S.Container>
@@ -86,9 +152,6 @@ const ItemDetail: React.FC = () => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 400);
-          console.log(JSON.stringify(values, null, 2));
-          console.log('order', order);
-          console.log('values', values);
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
@@ -110,7 +173,7 @@ const ItemDetail: React.FC = () => {
                     <div>
                       <p>quantos?</p>
                       <p className='order-amount'>
-                        total <span> {JSON.stringify(values)}</span>
+                        total <span> {formatPrice(calcTotalOrderPrice(values))}</span>
                       </p>
                     </div>
                     {values[order.name] <= 0 || values[order.name] === undefined ? (
@@ -150,7 +213,7 @@ const ItemDetail: React.FC = () => {
                             optionGroup.optionList.map((option, index) => (
                               <S.InputContainer>
                                 <div>
-                                  <NumberInput name={optionGroup.name + '_' + option.label} />
+                                  <NumberInput name={optionGroup.name + '.' + option.label} />
                                   {option.saleOriginalPrice > 0 && <img className='option-icons' src={MoneyIconSvg} />}
                                   <label>{option.label}</label>
                                 </div>

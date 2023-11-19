@@ -23,3 +23,11 @@ export interface OptionInterface {
   saleOriginalPrice: number;
   quantity: number;
 }
+
+export interface NumberInputValue {
+  [key: string]: number;
+}
+
+export interface FormState {
+  [key: string]: string | number | NumberInputValue | string[];
+}
