@@ -205,8 +205,8 @@ export const Container = styled.main`
           font-weight: 700;
           font-size: 0.75rem;
           font-family: Nunito;
-          background: ${theme.colors.darkGray};
           color: ${theme.colors.white};
+          background: ${theme.colors.darkGray};
         }
 
         div:first-child {

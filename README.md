@@ -43,7 +43,7 @@ Assim, a aplicação pode ser acessada no endereço:
 
 # 📦 Arquitetura
 
-O projeto é um Single Page Application desenvolvido com a biblioteca `reactjs`, `typescript` com `webpack` e `babel` configurado manualmente, utilizando como linter o `eslint` no padrão ES2022 e para estilização é utilizado _CSS in JS_ com o `styled-components` e o padrão [Idiomatic CSS](https://github.com/necolas/idiomatic-css), no gerenciamento dos formulários é utilizado a biblioteca `formik` e gerenciamento de estado da aplicação é feito com a API de contexto do react.
+O projeto é um Single Page Application desenvolvido com a biblioteca `reactjs`, `typescript` com `webpack` e `babel` configurado manualmente, utilizando como linter o `eslint` no padrão ES2022 e para estilização é utilizado _CSS in JS_ com o `styled-components` e o padrão [Idiomatic CSS](https://github.com/necolas/idiomatic-css), no gerenciamento dos formulários é utilizado a biblioteca `formik` e gerenciamento de estado da aplicação é feito com a API de contexto do react. Obs. Este projeto foi desenvolvido com nodejs na versão v18.17.1
 
 ```shell
 src/
@@ -75,10 +75,7 @@ http://localhost:3000/error
 
 ## Dados, como transformar o protótipo em uma linda página funcional?
 
-Antes de começar a desenvolver, precisava estabelecer a expectativa da tela de detalhes do item, então coloquei como objetivo que iria fazer o mais próximo possível da realidade de uma aplicação de cardápio no âmbito do detalhes do pedido e principalmente os opcionais do cardápio.
-
-Partindo deste principio, precisava estruturar os dados observando as telas e campos do design e prover os dados de um backend, assim com minha experiencia prévia desenvolvi um contrato de api como pode ser observado na imagem abaixo, optei por utilizar o json-server pela facilidade de configuração, porém o mais correto seria utilizar um BFF (Back-end for Front-end) ou miragejs, o contrato completo pode ser encontrado em [src/interfaces/OrderDataInterface](./src/interfaces/OrderDataInterface)
-e no mock do json-server o db.json.
+Visando replicar a experiência real de uma aplicação de cardápio, onde o dono de negócio cadastra as opções de cada item do cardápio através de uma aplicação voltada ao cadastro das lojas, items e gerenciamento de pedidos, decidi por tornar a aplicação frontend mais dinâmica, apresentando campos de acordo com o que for definido no sistema, obtendo esses dados através de uma API. Para esse teste, utilizei a lib json-server para subir uma API com contrato simulado (mock).
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/marcosdissotti/images/main/dados.png" alt="imagem com um opcional do cardápio onde eu destaco o campo qual o tamanho?" width="400">
@@ -134,11 +131,23 @@ Regras
 
 Após definir o contrato da API e as regras para exibição do formulário dinâmico, se tornou viável a transformação do protótipo em uma linda página funcional.
 
-## 2
+## Código, qual receita seguir?
 
-## 3
+Todo bom prato tem que seguir uma receita a risca e com código não é diferente, dito isto, precisei definir como construir o SPA com react e com alta probabilidade de mudanças durante o projeto para isso optei por configurar manualmente o webpack com typescript e react para ter controle total sobre a configuração e personalização do projeto.
 
-## 4
+Na estilização dos componentes e paginas, utilizei CSS in JS com styled-components, facilita muito para modificar os estilos da página através dos estados ou mesmo utilização de tema, configurei também a possibilidade variação de temas como por exemplo, caso queira adaptar a pagina para cores que chamem atenção em um dia dos namorados (um dos mais movimentados nos restaurantes) é possível com o themes configurado, vale ressaltar também o padrão de escrever css de forma consistente e idiomática [Idiomatic CSS](https://github.com/necolas/idiomatic-css), onde devemos separar por posicionamento, caixa, display e outros, veja um exemplo da estilização da tag de campo obrigatório abaixo.
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/marcosdissotti/images/main/CSS.png" alt="imagem de um código css e a forma mais consistente de escrever" width="400">
+</p>
+
+Para o gerenciamento dos formulários utilizei o formik, pois estava começando a criar muitos states ao longo da criação dos renders dinâmicos dos inputs, acredito que essas libs adicionam um pouco de verbosidade, mas nesse caso, seria mais verboso não utilizar. É importante mencionar que optei por utilizar o mínimo libs possível, por exemplo acabei criando boa parte dos componentes somente com css e o svg disponibilizado no figma como esse input radio e input number abaixo:
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/marcosdissotti/images/main/radioandnumber.png" alt="imagem de um input radio e um input number" width="400">
+</p>
+
+Mesmo se atentando aos padrões e boas práticas, ainda faltam melhorias que poderiam deixar a página ainda mais funcional e visualmente agradável para todos dispositivos, que vou mencionar logo a seguir.
 
 <a name="improvements"></a>
 
