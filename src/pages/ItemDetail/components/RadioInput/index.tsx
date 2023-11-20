@@ -1,12 +1,10 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { Field } from 'formik';
-
-import { FormState, OptionInterface, OptionsInterface } from '@interfaces/OrderDataInterface';
 
 import MoneyIconSvg from '@assets/icons/money-icon.svg';
 import RadioCheckedIconSvg from '@assets/icons/radio-checked.svg';
-
 import OptionPriceOrSale from '@pages/ItemDetail/components/OptionPriceOrSale';
+import { FormState, OptionInterface, OptionsInterface } from '@interfaces/OrderDataInterface';
 
 import * as S from './styles';
 

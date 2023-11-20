@@ -1,9 +1,9 @@
 import { Field } from 'formik';
 
-import OptionPriceOrSale from '@pages/ItemDetail/components/OptionPriceOrSale';
 import MoneyIconSvg from '@assets/icons/money-icon.svg';
-
+import OptionPriceOrSale from '@pages/ItemDetail/components/OptionPriceOrSale';
 import { FormState, OptionInterface, OptionsInterface } from '@interfaces/OrderDataInterface';
+
 import * as S from './styles';
 
 interface CheckboxInput {

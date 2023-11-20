@@ -1,7 +1,7 @@
 import { useRouteError, useLocation } from 'react-router-dom';
 
-import PageNotFoundIconSvg from '@assets/icons/page-not-found.svg';
 import ServerDownIconSvg from '@assets/icons/server_down.svg';
+import PageNotFoundIconSvg from '@assets/icons/page-not-found.svg';
 
 import * as S from './styles';
 

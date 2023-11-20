@@ -10,8 +10,8 @@ export const Container = styled.footer`
     flex-direction: column;
     justify-content: center;
 
-    background: ${theme.colors.secondary};
     color: ${theme.colors.purple};
+    background: ${theme.colors.secondary};
 
     p:first-child {
       margin-bottom: 8px;
