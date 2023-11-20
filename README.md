@@ -27,7 +27,7 @@ Desafio para vaga de Desenvolvedor Front-end Pleno do Aiqfome com objetivo de co
 
 `json-server --watch db.json --port 3001`
 
-**Instalar as dependências do projeto**
+**Instalar as dependências do projeto (Certifique-se de utilizar o nodejs na versão 18 ou superior)**
 
 `npm install`
 
