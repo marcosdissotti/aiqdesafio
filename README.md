@@ -158,23 +158,23 @@ Mesmo se atentando aos padrões e boas práticas, ainda faltam melhorias que pod
 - Responsividade, desenvolvi a estrutura para fazer o site responsivo com breakpoints, mas falta incorporar na aplicação.
 - Botão Adicionar Item, no momento está sendo necessário clicar nele primeiro antes de selecionar os opcionais, mas poderia setar o estado dele para quantidade 1 automaticamente ao clicar em algum field ou desativar os fields enquanto ele não for selecionado.
 - Alterar o input checkbox para ficar semelhante ao radio input nas cores, atualmente está com o padrão do navegador.
-- Tests Unitários e End-to-End, cheguei a implentar o jest e testing-library, mas removi por estar focado em funcionalidades da página.
+- Tests Unitários e End-to-End, cheguei a implantar o jest e testing-library, mas removi por estar focado em funcionalidades da página.
 
 ## O que fiz
 
-Calculo de valor total
-Multiplica o valor do tamanho do item pela quantidade
-Diferentes inputs, checkboxes, radio e de numero para increment/decrement
-Codificação da UI toda conforme especificado em design
+- Calculo de valor total
+- Multiplica o valor do tamanho do item pela quantidade
+- Diferentes inputs, checkboxes, radio e de numero para increment/decrement
+- Codificação da UI toda conforme especificado em design
 
 ## O que não fiz
 
-Adaptação pra dispositivos móveis
-Funcionalidade para o botão entrar
-Funcionalidade para o botão ver ticket
-Funcionalidade para o input de pesquisa na loja
-Validação dos inputs, poderia usar yup passando o schema no validationSchema do Formik e adicionar textHelpers de erros para exibir quando tentar submeter sem selecionar os campos obrigatórios
-Botão pra submeter o pedido/formulário (Ir para tela de Ticket ou Pagamento)
+- Adaptação pra dispositivos móveis
+- Funcionalidade para o botão entrar
+- Funcionalidade para o botão ver ticket
+- Funcionalidade para o input de pesquisa na loja
+- Validação dos inputs, poderia usar yup passando o schema no validationSchema do Formik e adicionar textHelpers de erros para exibir quando tentar submeter sem selecionar os campos obrigatórios
+- Botão pra submeter o pedido/formulário (Ir para tela de Ticket ou Pagamento)
 
 ---
 
